@@ -1,4 +1,4 @@
-package coinrua
+package main
 
 import (
 	"math/big"
