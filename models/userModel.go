@@ -2,7 +2,7 @@ package models
 
 type User struct {
 	Id   int64  `json:"id"`
-	Name string `json:"user_name"`
+	UserName string `json:"user_name"`
 	Age  int    `json:"age"`
 }
 

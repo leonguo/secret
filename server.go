@@ -16,7 +16,9 @@ func main() {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	e.GET("/user-by-id", controllers.GetUser)
+	// api接口组
+	api := e.Group("/api")
+	api.GET("/users/:id", controllers.GetUser)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
