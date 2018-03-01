@@ -23,8 +23,8 @@ func main() {
 	api.Use(middleware.KeyAuthWithConfig(middleware.KeyAuthConfig{
 		AuthScheme: "api_v1",
 		Validator: func(key string, c echo.Context) (bool, error) {
-			util.SignAuth(c)
-			return key == "valid-key", nil
+			checkOk, err := util.SignAuth(c)
+			return checkOk, err
 		},
 	}))
 	api.GET("/users/:id", controllers.GetUser)

@@ -6,6 +6,8 @@ import (
 	"sort"
 	"bytes"
 	"net/url"
+	"crypto/sha1"
+	"github.com/kataras/iris/core/errors"
 )
 
 type headerSort struct {
@@ -20,35 +22,49 @@ const Secret = "xxf223"
 	参数 url 请求参数 access_key timestamp platform
   */
 
-func SignAuth(c echo.Context) (signStr string) {
+func SignAuth(c echo.Context) (check bool, err error) {
 	params := make(map[string]string)
 	uri := c.Request().RequestURI
+	check = false
 	u, err := url.Parse(uri)
 	if err != nil {
-		panic(err)
+		return
 	}
 	paramStr := ""
 	params["Path"] = u.Path
 	params["Method"] = c.Request().Method
-	hs := HeaderParams(c)
+	hs, checkSignStr := HeaderParams(c)
+	if checkSignStr == "" {
+		return
+	}
 	if len(hs.Keys) > 0 {
 		for i, param := range hs.Keys {
 			params[param] = hs.Values[i]
 		}
 	}
+	params["SecretKey"] = Secret
 	for k , v := range params {
 		paramStr += k + "=" + v
 	}
-	h := hash.New()
-	h.write()
+	h := sha1.New()
+	h.Write([]byte(paramStr))
+	signStr := string(h.Sum(nil))
+	if signStr == checkSignStr {
+		check = true
+	}
 	c.Logger().Printf("paramStr >>> %v", paramStr)
-	c.Logger().Printf("params >>> %v", params)
+	c.Logger().Printf("signStr >>> %x", signStr)
+	return
 }
 
-func HeaderParams(c echo.Context) (hs *headerSort) {
+func HeaderParams(c echo.Context) (hs *headerSort, checkSignStr string) {
 	hs = &headerSort{}
 	header := c.Request().Header
-	for k, _ := range header {
+	for k := range header {
+		if k == "E-Sign" {
+			checkSignStr = header.Get(k)
+			continue
+		}
 		isSignKey := strings.HasPrefix(k, "E-")
 		if isSignKey {
 			hs.Keys = append(hs.Keys, k)
