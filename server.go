@@ -5,6 +5,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"echoplus/controllers"
+	"echoplus/util"
 )
 
 func main() {
@@ -22,11 +23,7 @@ func main() {
 	api.Use(middleware.KeyAuthWithConfig(middleware.KeyAuthConfig{
 		AuthScheme: "api_v1",
 		Validator: func(key string, c echo.Context) (bool, error) {
-			e.Logger.Printf("url >>>>>>>>>>  method %v",c.Request().Method)
-			e.Logger.Printf("url >>>>>>>>>>  URL %v",c.Request().URL)
-			e.Logger.Printf("URL >>>>>>>>>>> header  %v",c.Request().Header)
-			e.Logger.Printf("URL >>>>>>>>>>> body  %v",c.Request().Body)
-			e.Logger.Printf("URL >>>>>>>>>>> query string  %v",c.QueryString())
+			util.SignAuth(c)
 			return key == "valid-key", nil
 		},
 	}))
