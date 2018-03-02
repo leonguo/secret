@@ -7,7 +7,6 @@ import (
 	"bytes"
 	"net/url"
 	"crypto/sha1"
-	"github.com/kataras/iris/core/errors"
 )
 
 type headerSort struct {
