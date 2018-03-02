@@ -14,3 +14,13 @@ func GetUser(c echo.Context) error {
 	// return user
 	return c.JSON(http.StatusOK, user)
 }
+
+
+func AddUser(c echo.Context) error {
+	// get params
+	body := c.Request().Body
+	c.Logger().Printf("body : >>>> %v",body)
+	user := models.GetUserById()
+	// return user
+	return c.JSON(http.StatusOK, user)
+}

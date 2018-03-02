@@ -51,8 +51,8 @@ func SignAuth(c echo.Context) (check bool, err error) {
 	if signStr == checkSignStr {
 		check = true
 	}
-	c.Logger().Printf("paramStr >>> %v", paramStr)
-	c.Logger().Printf("signStr >>> %x", signStr)
+	//c.Logger().Printf("paramStr >>> %v", paramStr)
+	//c.Logger().Printf("signStr >>> %x", signStr)
 	return
 }
 
