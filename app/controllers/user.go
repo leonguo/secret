@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/labstack/echo"
 	"net/http"
-	"echoplus/models"
+	"echoplus/app/models"
 )
 
 func GetUser(c echo.Context) error {
