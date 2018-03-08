@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo"
 	"net/http"
 	"echoplus/app/models"
+	"echoplus/config"
 )
 
 func GetUser(c echo.Context) error {
@@ -12,6 +13,7 @@ func GetUser(c echo.Context) error {
 	c.Logger().Printf(userId)
 	user := models.GetUserById()
 	// return user
+	c.Logger().Printf(" cfg >>>> %s",config.AppConfig.GetString("title"))
 	return c.JSON(http.StatusOK, user)
 }
 

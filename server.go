@@ -2,14 +2,12 @@ package main
 
 import (
 	"echoplus/app"
-	//"echoplus/config"
-	"fmt"
-	//"github.com/labstack/echo"
+	"echoplus/config"
 )
 
 func main() {
-
+	// 初始化app配置文件
+	config.Init()
 	app.Init()
-	fmt.Printf("%v","DD")
-	app.Server.Logger.Fatal(app.Server.Start(":1323"))
+	app.Server.Logger.Fatal(app.Server.Start(config.AppConfig.GetString("system.port")))
 }

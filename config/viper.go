@@ -5,14 +5,15 @@ import (
 	"fmt"
 )
 
-func InitConf() (Config *viper.Viper) {
-	Config = viper.New()
-	Config.SetConfigName("config")
-	Config.SetConfigType("toml")
-	Config.AddConfigPath("config")
-	err := Config.ReadInConfig()
+var AppConfig *viper.Viper
+
+func Init() {
+	AppConfig = viper.New()
+	AppConfig.SetConfigName("config")
+	AppConfig.SetConfigType("toml")
+	AppConfig.AddConfigPath("config")
+	err := AppConfig.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("Fatal error config file: %s \n", err))
 	}
-	return
 }
