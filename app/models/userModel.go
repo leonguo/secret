@@ -1,17 +1,23 @@
 package models
 
+import (
+	"echoplus/app/libs"
+)
+
 type User struct {
-	Id   int64  `json:"id"`
-	UserName string `json:"user_name"`
-	Age  int    `json:"age"`
+	Id       int64  `gorm:"primary_key"`
+	UserName string `gorm:"column:username"`
+	Age      int
 }
 
-type Users struct {
-	Users []User `json:"users"`
+func (User) TableName() string {
+	return "public.user"
 }
 
 // 根据ID获取用户信息
 func GetUserById() User {
-	user := User{1, "name", 2}
+	db := libs.ConnectPG()
+	var user User
+	db.First(&user)
 	return user
 }
