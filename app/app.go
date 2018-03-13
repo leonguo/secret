@@ -36,5 +36,5 @@ func Init() {
 	//	},
 	//}))
 	api.GET("/users/:id", controllers.GetUser)
-	//api.POST("/users", controllers.AddUser)
+	api.POST("/users", controllers.AddUser)
 }

@@ -15,9 +15,9 @@ func (User) TableName() string {
 }
 
 // 根据ID获取用户信息
-func GetUserById(db *gorm.DB) User {
+func GetUserById(db *gorm.DB,userId int64) User {
 	var user User
-	db.First(&user)
+	db.First(&user,userId)
 	return user
 }
 
