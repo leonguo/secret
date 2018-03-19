@@ -21,11 +21,7 @@ func GetUserById(db *gorm.DB,userId int64) User {
 	return user
 }
 
-func CreateUser() {
-	//db := libs.ConnectPG()
-	//user := &User{
-	//	UserName:"ddd",
-	//	Age:22,
-	//}
-	//db.Create(user)
+func CreateUser(db *gorm.DB, user User) User {
+	db.Create(&user)
+	return user
 }

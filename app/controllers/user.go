@@ -32,7 +32,9 @@ func AddUser(c echo.Context) error {
 	defer db.ClosePG(conn)
 	c.Logger().Printf("body : >>>> %v", body)
 	var user models.User
-	//user := models.GetUserById(conn)
+	user.UserName = "guo2"
+	user.Age = 23
+	user = models.CreateUser(conn, user)
 	// return user
 	return c.JSON(http.StatusOK, user)
 }
