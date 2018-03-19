@@ -1,8 +1,8 @@
 package main
 
 import (
-	"echoplus/app"
-	"echoplus/config"
+	"./app"
+	"./config"
 )
 
 func main() {

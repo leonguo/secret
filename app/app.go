@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"net/http"
-	"echoplus/app/controllers"
+	"./controllers"
 )
 
 var Server *echo.Echo
