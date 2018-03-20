@@ -38,3 +38,19 @@ func AddUser(c echo.Context) error {
 	// return user
 	return c.JSON(http.StatusOK, user)
 }
+
+func DeleteUser(c echo.Context) error {
+	// get params
+	userId, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	conn := db.ConnectPG()
+	defer db.ClosePG(conn)
+	//userId, err := strconv.ParseInt(, 10, 64)
+	var user models.User
+	user.Id = userId
+	user = models.DeleteUser(conn, user)
+	// return user
+	return c.JSON(http.StatusOK, user)
+}
