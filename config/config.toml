@@ -4,7 +4,7 @@ title = 'ddd'
 port = ":1323"
 
 [db]
-pg_host = "47.90.63.215"
+pg_host = "118.126.103.122"
 pg_port = 5432
 pg_user = "postgres"
 pg_password = "123456"
