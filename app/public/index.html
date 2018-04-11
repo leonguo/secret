@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="imgId" src="">
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+    $(document).ready(function(){
+        $.post("http://localhost:1323/test",function(data,status){
+           console.log(data);
+            $("#imgId").attr('src',data.data);
+        });
+    });
+</script>
+</body>
+</html>
