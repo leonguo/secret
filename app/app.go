@@ -12,6 +12,7 @@ var Server *echo.Echo
 func Init() {
 	Server = echo.New()
 	Server.Debug = true
+	Server.DisableHTTP2 = true
 	// load default config
 	Server.Use(middleware.Logger())
 	Server.Use(middleware.Recover())
