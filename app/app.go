@@ -11,7 +11,7 @@ var Server *echo.Echo
 
 func Init() {
 	Server = echo.New()
-	Server.Debug = true
+	Server.Debug = false
 	Server.DisableHTTP2 = true
 	// load default config
 	Server.Use(middleware.Logger())
@@ -29,5 +29,6 @@ func Init() {
 
 	Server.POST("/getpng",controllers.GenerateCaptcha)
 	Server.POST("/attr/update",controllers.AttrUpdate)
+	Server.POST("/keepalive",controllers.KeepAlive)
 
 }

@@ -1,11 +1,11 @@
 title = 'ddd'
 
 [system]
-port = ":1323"
+port = ":8999"
 
 [db]
 pg_host = "118.126.103.122"
 pg_port = 5432
 pg_user = "postgres"
-pg_password = "123456"
+pg_password = ""
 pg_dbname = "postgres"
