@@ -1,4 +1,4 @@
-package db
+package gorm
 
 import (
 	"github.com/jinzhu/gorm"
@@ -7,22 +7,28 @@ import (
 	"fmt"
 )
 
-func ConnectPG() (PgDB *gorm.DB){
+var db *gorm.DB
+
+func PostgresConn(){
 	connectString := "host=" + config.AppConfig.GetString("db.pg_host") + " port=" + config.AppConfig.GetString("db.pg_port") + " user=" + config.AppConfig.GetString("db.pg_user") + " dbname=" + config.AppConfig.GetString("db.pg_dbname") + " password=" + config.AppConfig.GetString("db.pg_password") + " sslmode=disable"
-	PgDB, err := gorm.Open("postgres", connectString)
+	db, err := gorm.Open("postgres", connectString)
 	if err != nil {
-		panic(fmt.Errorf("Fatal err when db connect: %s \n", err))
+		panic(fmt.Errorf("Fatal err when postgre db connect: %s \n", err))
 	}
-	PgDB.DB().SetMaxIdleConns(5)
-	PgDB.DB().SetMaxOpenConns(100)
-	PgDB.LogMode(true)
-	return PgDB
+	db.DB().SetMaxIdleConns(5)
+	db.DB().SetMaxOpenConns(100)
+	db.LogMode(true)
+	return
 }
 
-func ClosePG(PgDB *gorm.DB) {
-	err := PgDB.Close()
+func ClosePg() {
+	err := db.Close()
 	if err != nil {
 		panic(err)
 	}
 	return
+}
+
+func DBManager() *gorm.DB {
+	return db
 }

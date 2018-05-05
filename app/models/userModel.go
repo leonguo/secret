@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
+	pgorm "../../db/gorm"
 )
 
 type User struct {
@@ -16,18 +16,18 @@ func (User) TableName() string {
 }
 
 // 根据ID获取用户信息
-func (u *User) GetUserById(db *gorm.DB, userId int64) {
-	db.First(u, userId)
+func (u *User) GetUserById(userId int64) {
+	pgorm.DBManager().First(u, userId)
 	return
 }
 
-func (u *User) CreateUser(db *gorm.DB) {
-	db.Create(u)
+func (u *User) CreateUser() {
+	pgorm.DBManager().Create(u)
 	return
 }
 
-func (u *User) DeleteUser(db *gorm.DB, userId int64) {
+func (u *User) DeleteUser(userId int64) {
 	u.Id = userId
-	db.Model(u).Update("is_deleted", 1)
+	pgorm.DBManager().Model(u).Update("is_deleted", 1)
 	return
 }
