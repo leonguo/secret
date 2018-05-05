@@ -27,6 +27,7 @@ func Init() {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
+	Server.GET("/user",controllers.GetUser)
 	Server.POST("/getpng",controllers.GenerateCaptcha)
 	Server.POST("/attr/update",controllers.AttrUpdate)
 	Server.POST("/keepalive",controllers.KeepAlive)
