@@ -16,13 +16,13 @@ func (User) TableName() string {
 }
 
 // 根据ID获取用户信息
-func (u *User) GetUserById(userId int64) {
-	pgorm.DBManager().First(u, userId)
+func (u *User) GetUserById(userId int64) (err error) {
+	err = pgorm.DBManager().First(&u, userId).Error
 	return
 }
 
 func (u *User) CreateUser() {
-	pgorm.DBManager().Create(u)
+	pgorm.DBManager().Create(&u)
 	return
 }
 

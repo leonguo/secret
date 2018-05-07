@@ -10,8 +10,9 @@ import (
 var db *gorm.DB
 
 func PostgresConn(){
+	var err error
 	connectString := "host=" + config.AppConfig.GetString("db.pg_host") + " port=" + config.AppConfig.GetString("db.pg_port") + " user=" + config.AppConfig.GetString("db.pg_user") + " dbname=" + config.AppConfig.GetString("db.pg_dbname") + " password=" + config.AppConfig.GetString("db.pg_password") + " sslmode=disable"
-	db, err := gorm.Open("postgres", connectString)
+	db, err = gorm.Open("postgres", connectString)
 	if err != nil {
 		panic(fmt.Errorf("Fatal err when postgre db connect: %s \n", err))
 	}
