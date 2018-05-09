@@ -93,3 +93,7 @@ func (hs *headerSort) Swap(i, j int) {
 	hs.Values[i], hs.Values[j] = hs.Values[j], hs.Values[i]
 	hs.Keys[i], hs.Keys[j] = hs.Keys[j], hs.Keys[i]
 }
+
+func AuthorizationHeader() bool {
+	return true
+}
