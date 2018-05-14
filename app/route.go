@@ -16,6 +16,9 @@ func InitRoute()  {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 	Server.GET("/user",controllers.GetUser)
+	Server.PUT("/user",controllers.PutUser)
+
+
 	Server.POST("/getpng",controllers.GenerateCaptcha)
 	Server.POST("/attr/update",controllers.AttrUpdate)
 	Server.POST("/keepalive",controllers.KeepAlive)

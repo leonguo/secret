@@ -17,3 +17,13 @@ func GetUser(c echo.Context) error {
 	spew.Dump(test)
 	return c.JSON(http.StatusOK, users)
 }
+
+// 更新用户信息
+func PutUser(c echo.Context) error {
+	m := echo.Map{}
+	if err := c.Bind(&m); err != nil {
+		return err
+	}
+	spew.Dump(m)
+	return c.JSON(http.StatusOK, "")
+}

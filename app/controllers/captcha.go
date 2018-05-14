@@ -59,6 +59,5 @@ func AttrUpdate(c echo.Context) error {
 }
 
 func KeepAlive(c echo.Context) error {
-
 	return c.String(http.StatusOK, "")
 }
