@@ -27,3 +27,8 @@ func PutUser(c echo.Context) error {
 	spew.Dump(m)
 	return c.JSON(http.StatusOK, "")
 }
+
+func GetTest(c echo.Context) error {
+	m := map[string]interface{}{"dd": "dd"}
+	return c.JSON(http.StatusOK,m)
+}

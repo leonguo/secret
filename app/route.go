@@ -15,6 +15,9 @@ func InitRoute()  {
 	Server.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
+	// test
+	Server.GET("/test",controllers.GetTest)
+
 	Server.GET("/user",controllers.GetUser)
 	Server.PUT("/user",controllers.PutUser)
 
