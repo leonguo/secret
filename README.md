@@ -14,3 +14,21 @@
     Requests/sec:  55362.51
     Transfer/sec:      9.50MB
 ```
+
+框架结构
+  - app --应用目录
+       - middleware    -- 基础组件
+       - controllers   -- 业务逻辑
+       - lib           -- 业务基础库
+       - models        -- 数据模型
+       - public        -- 资源
+       - app.go        -- 应用入口
+       - route.go      -- 路由
+  - config --服务配置文件
+       - config.toml  -- 配置文件
+  - db --数据库统一入口
+       - gorm  -- ORM
+       - redis -- redis操作
+  - util  --全局公用类
+  - tests --单元测试
+  - server.go --框架启动文件
