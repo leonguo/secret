@@ -3,6 +3,7 @@ package redis
 import (
 	"github.com/go-redis/redis"
 	"../../config"
+	"time"
 )
 
 var redisClient *redis.Client
@@ -42,6 +43,14 @@ func SetValue(key string, value interface{}) error {
 	return nil
 }
 
+func SetValueExpire(key string, value interface{}, ex time.Duration) error {
+	var err error
+	if err = redisClient.Set(key, value, ex).Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
 func DelKey(key string) error {
 	var err error
 	if _, err = redisClient.Del(key).Result(); err != nil {
