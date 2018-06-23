@@ -5,6 +5,23 @@ import (
 	"math"
 )
 
+/**
+    lib库-page用例
+	var videos []Video
+	db := pgorm.DBManager()
+	if channelNumber > 0 {
+		query := "channel_number = " + strconv.FormatInt(channelNumber, 10)
+		db = db.Where(query)
+	}
+	if page < 1 {
+		page = 1
+	}
+	if limit < 1 {
+		limit = 1
+	}
+	p := lib.Paginator{DB: db, Limit: limit, Page: page, OrderBy: []string{"video_id desc"}}
+	data = p.Paginate(&videos)
+ */
 type Paginator struct {
 	DB      *gorm.DB
 	OrderBy []string
