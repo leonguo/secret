@@ -3,16 +3,9 @@ package util
 import (
 	"github.com/labstack/echo"
 	"strings"
-	"sort"
-	"bytes"
 	"net/url"
 	"crypto/sha1"
 )
-
-type headerSort struct {
-	Keys   []string
-	Values []string
-}
 
 const Secret = "xxf223"
 
@@ -21,7 +14,7 @@ const Secret = "xxf223"
 	参数 url 请求参数 access_key timestamp platform
   */
 
-func SignAuth(c echo.Context) (check bool, err error) {
+func SignAuth1(c echo.Context) (check bool, err error) {
 	params := make(map[string]string)
 	uri := c.Request().RequestURI
 	check = false
@@ -72,28 +65,4 @@ func HeaderParams(c echo.Context) (hs *headerSort, checkSignStr string) {
 	}
 	hs.Sort()
 	return
-}
-
-func (hs *headerSort) Sort() {
-	sort.Sort(hs)
-}
-
-// Additional function for function SignHeader.
-func (hs *headerSort) Len() int {
-	return len(hs.Values)
-}
-
-// Additional function for function SignHeader.
-func (hs *headerSort) Less(i, j int) bool {
-	return bytes.Compare([]byte(hs.Keys[i]), []byte(hs.Keys[j])) < 0
-}
-
-// Additional function for function SignHeader.
-func (hs *headerSort) Swap(i, j int) {
-	hs.Values[i], hs.Values[j] = hs.Values[j], hs.Values[i]
-	hs.Keys[i], hs.Keys[j] = hs.Keys[j], hs.Keys[i]
-}
-
-func AuthorizationHeader() bool {
-	return true
 }
