@@ -3,8 +3,6 @@ package main
 import (
 	"./app"
 	"./config"
-	"./db/gorm"
-	"./db/redis"
 	"os"
 	"os/signal"
 	"time"
@@ -12,11 +10,6 @@ import (
 )
 
 func main() {
-	// 初始化app配置文件
-	config.Init()
-	app.Init()
-	redis.Init()
-	gorm.PostgresConn()
 	// Start server
 	go func() {
 		if err := app.Server.Start(config.AppConfig.GetString("system.port")); err != nil {

@@ -8,7 +8,7 @@ import (
 
 var redisClient *redis.Client
 
-func Init() {
+func init() {
 	var err error
 	redisClient = redis.NewClient(&redis.Options{
 		Addr:     config.AppConfig.GetString("redis.addr"),

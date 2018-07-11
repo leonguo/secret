@@ -7,7 +7,7 @@ import (
 
 var Server *echo.Echo
 
-func Init() {
+func init() {
 	Server = echo.New()
 	Server.Debug = true
 	// load default config

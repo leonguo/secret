@@ -7,7 +7,7 @@ import (
 
 var AppConfig *viper.Viper
 
-func Init() {
+func init() {
 	AppConfig = viper.New()
 	AppConfig.SetConfigName("config")
 	AppConfig.SetConfigType("toml")

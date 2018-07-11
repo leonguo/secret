@@ -9,7 +9,7 @@ import (
 
 var db *gorm.DB
 
-func PostgresConn(){
+func init(){
 	var err error
 	connectString := "host=" + config.AppConfig.GetString("db.pg_host") + " port=" + config.AppConfig.GetString("db.pg_port") + " user=" + config.AppConfig.GetString("db.pg_user") + " dbname=" + config.AppConfig.GetString("db.pg_dbname") + " password=" + config.AppConfig.GetString("db.pg_password") + " sslmode=disable"
 	db, err = gorm.Open("postgres", connectString)
