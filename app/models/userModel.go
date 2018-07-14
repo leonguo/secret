@@ -2,6 +2,7 @@ package models
 
 import (
 	pgorm "../../db/gorm"
+	"github.com/lib/pq"
 )
 
 type User struct {
@@ -9,6 +10,7 @@ type User struct {
 	UserName  string `gorm:"column:username" json:"username"`
 	Age       int    `gorm:"column:age" json:"age"`
 	IsDeleted int    `gorm:"column:is_deleted" json:"is_deleted"`
+	OtherName pq.StringArray `gorm:"column:other_name" json:"other_name"`
 }
 
 func (User) TableName() string {
