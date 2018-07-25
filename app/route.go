@@ -37,7 +37,7 @@ func InitRoute() {
 		AuthScheme: "Basic",
 		Validator: func(key string, c echo.Context) (bool, error) {
 			checkOk, _ := util.AuthorizationHeader(c)
-			return checkOk, errors.New("dd")
+			return checkOk, errors.New("auth error")
 		},
 	}))
 
