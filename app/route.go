@@ -20,6 +20,7 @@ func InitRoute() {
 
 	Server.GET("/user", controllers.GetUser)
 	Server.PUT("/user", controllers.PutUser)
+	Server.GET("/users", controllers.GetUsers)
 
 	Server.POST("/getpng", controllers.GenerateCaptcha)
 	Server.POST("/attr/update", controllers.AttrUpdate)
