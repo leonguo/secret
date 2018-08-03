@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/sevenNt/echo-pprof"
 )
 
 var Server *echo.Echo
@@ -20,4 +21,5 @@ func init() {
 
 	// route
 	InitRoute()
+	echopprof.Wrap(Server)
 }
