@@ -7,6 +7,7 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	pgorm "../../db/gorm"
 	"../lib"
+	"secret/util"
 )
 
 func GetUser(c echo.Context) error {
@@ -36,9 +37,10 @@ func GetTest(c echo.Context) error {
 }
 
 func GetUsers(c echo.Context) error {
+	page := util.StringToInt(c.QueryParam("page"))
+	limit := util.StringToInt(c.QueryParam("limit"))
 	var users []models.User
 	db := pgorm.DBManager()
-	var page, limit = 0, 0
 	if page < 1 {
 		page = 1
 	}

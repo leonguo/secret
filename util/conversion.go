@@ -3,6 +3,7 @@ package util
 import (
 	"bytes"
 	"encoding/binary"
+	"strconv"
 )
 
 // 整形转换成字节
@@ -19,4 +20,13 @@ func BytesToInt(b []byte) int64 {
 	var tmp int64
 	binary.Read(bytesBuffer, binary.BigEndian, &tmp)
 	return int64(tmp)
+}
+
+// string转成int
+func StringToInt(str string) int {
+	i , err := strconv.Atoi(str)
+	if err !=nil {
+		i = 0
+	}
+	return  i
 }
